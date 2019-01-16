@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jcip-annotations-src">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jcip-annotations.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/jcip-annotations-src.jar!/" />
+    </SOURCES>
+  </library>
+</component>
