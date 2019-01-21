@@ -3,7 +3,7 @@ package offer;
 import java.util.Arrays;
 
 /**
- * Created by ionolab-DP on 2019/1/15.
+ * Created by pengsel on 2019/1/15.
  */
 public class ReOrderArray {
     /**
@@ -15,15 +15,15 @@ public class ReOrderArray {
             return;
         int[] result=new int[array.length];
         int count=0;
-        for (int i=0;i<array.length;i++){
-            if ((array[i]&1)!=0) {
-                result[count] = array[i];
+        for (int anArray : array) {
+            if ((anArray & 1) != 0) {
+                result[count] = anArray;
                 count++;
             }
         }
-        for (int i=0;i<array.length;i++){
-            if ((array[i]&1)==0) {
-                result[count] = array[i];
+        for (int anArray : array) {
+            if ((anArray & 1) == 0) {
+                result[count] = anArray;
                 count++;
             }
         }
@@ -36,47 +36,41 @@ public class ReOrderArray {
          * 指向同一个对象,对象的内容可以在被调用的方法中改变，
          * 但对象的引用(不是引用的副本)是永远不会改变的。
          */
-        for (int i=0;i<array.length;i++){
-            array[i]=result[i];
-        }
+        System.arraycopy(result, 0, array, 0, array.length);
     }
 
     /**
      * 考虑可扩展性的解法，将判断封装成一个函数，
      * 当需要更换判断条件时，增加相应的函数。
-     * @param array
+     * @param array 输入数组
      */
     public static void reOrder2(int[] array){
         if (array==null)
             return;
         int[] result=new int[array.length];
         int count=0;
-        for (int i=0;i<array.length;i++){
-            if (isOdd(array[i])) {
-                result[count] = array[i];
+        for (int anArray : array) {
+            if (isOdd(anArray)) {
+                result[count] = anArray;
                 count++;
             }
         }
-        for (int i=0;i<array.length;i++){
-            if (!isOdd(array[i])) {
-                result[count] = array[i];
+        for (int anArray : array) {
+            if (!isOdd(anArray)) {
+                result[count] = anArray;
                 count++;
             }
         }
-        for (int i=0;i<array.length;i++){
-            array[i]=result[i];
-        }
+        System.arraycopy(result, 0, array, 0, array.length);
     }
 
     public static boolean isOdd(int n){
-        if ((n&1)!=1)
-            return true;
-        return false;
+        return (n & 1) == 1;
     }
 
     public static void main(String[] args) {
         int[] array ={1, 2 , 3,4,5};
-        reOrder1(array);
+        reOrder2(array);
         System.out.println(Arrays.toString(array));
     }
 }
