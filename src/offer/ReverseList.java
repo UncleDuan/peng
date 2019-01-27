@@ -16,11 +16,6 @@ public class ReverseList {
         while (currentNode!=null){
 //          保存下一结点，当当前结点指向前一结点时，链表断裂，保存了后一结点才可以续上。
             ListNode next=currentNode.next;
-//          判断是否到了尾结点
-            if (next==null){
-//              将链表的头指向反转前的尾结点
-                reversedHead=currentNode;
-            }
 //          将当前结点指向前一结点
             currentNode.next=preNode;
 //          更新前一节点为原链表的当前结点
@@ -28,6 +23,6 @@ public class ReverseList {
 //          更新当前结点为原链表的下一结点
             currentNode=next;
         }
-        return reversedHead;
+        return preNode;
     }
 }

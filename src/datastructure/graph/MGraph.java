@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Created by pengsel on 2019/1/21.
+ * 邻接矩阵是一种不错的图存储结构，但是对于边数相对顶点较少的图，这种结构存在对存储空间的极大浪费。
  */
 public class MGraph {
     public static final int MAXSIZE=100;

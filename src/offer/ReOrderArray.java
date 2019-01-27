@@ -68,9 +68,27 @@ public class ReOrderArray {
         return (n & 1) == 1;
     }
 
+    public static void  reorder(int[] array){
+        if (array==null){
+            return;
+        }
+        int pre=0;
+        int tail=array.length-1;
+        int temp=0;
+        while (pre<tail){
+            while (!isOdd(array[pre]))
+                pre++;
+            while (isOdd(array[tail]))
+                tail--;
+            temp=array[pre];
+            array[pre]=array[tail];
+            array[tail]=temp;
+        }
+    }
     public static void main(String[] args) {
         int[] array ={1, 2 , 3,4,5};
-        reOrder2(array);
+        reorder(array);
         System.out.println(Arrays.toString(array));
+
     }
 }

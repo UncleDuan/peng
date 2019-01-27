@@ -13,50 +13,50 @@ public class MergeList {
             return head1;
         }
 
-        ListNode head=null;
+        ListNode mergeHead=null;
         if (head1.val<=head2.val){
-            head=head1;
-            head1=head.next;
+            mergeHead=head1;
+            head1=mergeHead.next;
         }else {
-            head=head2;
+            mergeHead=head2;
             head2=head2.next;
         }
-        ListNode preNode=head;
+        ListNode mergeCurrent=mergeHead;
 //      当达到了某一个链表的末尾时结束
         /**
          * 正常运行条件：
          * 必须两个都不是null。
          */
         while (head1!=null&&head2!=null){
-//          head1与head2存储的是当前结点，preNode存储的是合并列表的最后一结点
+//          head1与head2存储的是当前结点，mergeCurrent存储的是合并列表的最后一结点
             if (head1.val<=head2.val){
                 /**
                  * head1中存储值较小：
                  * 1.将head1置为合并链表的下一结点;
-                 * 2.更新前一结点preNode为当前结点head1;
+                 * 2.更新前一结点mergeCurrent为当前结点head1;
                  * 3.更新当前结点head1为后一节点head1.next;
                  */
-                preNode.next=head1;
-                preNode=preNode.next;
+                mergeCurrent.next=head1;
+                mergeCurrent=mergeCurrent.next;
                 head1=head1.next;
             }else {
-                preNode.next=head2;
-                preNode=preNode.next;
+                mergeCurrent.next=head2;
+                mergeCurrent=mergeCurrent.next;
                 head2=head2.next;
             }
         }
         /**
          * 考虑终点时：
-         * 1.preNode赋值给了某一个链表的终止结点；
-         * 2.需要把preNode指向另一个链表的当前结点。
+         * 1.mergeCurrent赋值给了某一个链表的终止结点；
+         * 2.需要把mergeCurrent指向另一个链表的当前结点。
          */
         if (head1!=null){
-            preNode.next=head1;
+            mergeCurrent.next=head1;
         }
         if (head2!=null){
-            preNode.next=head2;
+            mergeCurrent.next=head2;
         }
-        return head;
+        return mergeHead;
     }
 
     /**
@@ -72,15 +72,15 @@ public class MergeList {
         if (head2==null){
             return head1;
         }
-        ListNode mergeHead=null;
+        ListNode mergeCurrent=null;
         if (head1.val<head2.val){
-            mergeHead=head1;
-            mergeHead.next=merge2(head1.next,head2);
+            mergeCurrent=head1;
+            mergeCurrent.next=merge2(head1.next,head2);
         }else {
-            mergeHead=head2;
-            mergeHead.next=merge2(head1,head2.next);
+            mergeCurrent=head2;
+            mergeCurrent.next=merge2(head1,head2.next);
         }
-        return mergeHead;
+        return mergeCurrent;
     }
 
     public static void main(String[] args) {
