@@ -1,5 +1,7 @@
 package datastructure.search;
 
+import java.util.Objects;
+
 /**
  * Created by pengsel on 2019/1/26.
  */
@@ -92,7 +94,8 @@ public class BiTreeNode {
         if (biTree==null)
             return false;
         else {
-            if (key==biTree.data)
+            //Todo father不是正确的
+            if (key==biTree.leftChild.data||key==)
                 return deleteNode(biTree,father);
             else if (key<biTree.data){
                 return delete(biTree.leftChild,key);
@@ -159,17 +162,49 @@ public class BiTreeNode {
         traverse(biTree.rightChild);
 
     }
+    public int max(){
+        BiTreeNode temp=this;
+        while (temp.rightChild!=null){
+            temp=temp.rightChild;
+        }
+        return temp.data;
+    }
 
     public static void main(String[] args) {
-        int[] array={62,88,58,47,35,73,51,99,37,93};
-        BiTreeNode head=BiTreeNode.create(array);
-        traverse(head);
-        System.out.println(search(head,100));
-        insert(head,100);
-        traverse(head);
-        delete(head,99);
-        traverse(head);
+//        int[] array={62,88,58,47,35,73,51,99,37,93};
+//        BiTreeNode head=BiTreeNode.create(array);
+//        traverse(head);
+//        System.out.println(search(head,100));
+//        insert(head,100);
+//        traverse(head);
+//        delete(head,99);
+//        traverse(head);
+//
+        int[] array1={80};
+        BiTreeNode head1=BiTreeNode.create(array1);
+        BiTreeNode head2=BiTreeNode.create(array1);
+        System.out.println(head1.equals(head2));
+
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o==null)
+            return true;
+        BiTreeNode that=(BiTreeNode) o;
+        if ( that.data!=data)
+            return false;
+        boolean result=true;
+        if (leftChild!=null)
+            result=result&&leftChild.equals(that.leftChild);
+        if (rightChild!=null)
+            result=result&&rightChild.equals(that.rightChild);
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data, leftChild, rightChild);
+    }
 }

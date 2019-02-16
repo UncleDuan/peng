@@ -1,5 +1,7 @@
 package offer;
 
+import datastructure.linkList.ListNode;
+
 /**
  * Created by ionolab-DP on 2019/1/18.
  */

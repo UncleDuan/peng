@@ -1,5 +1,7 @@
 package offer;
 
+import datastructure.linkList.ListNode;
+
 /**
  * Created by ionolab-DP on 2019/1/15.
  */
@@ -14,7 +16,7 @@ public class FindKthToTail {
      * @param k 第k个
      * @return 第k个结点
      */
-    public static ListNode findKth(ListNode head,int k){
+    public static ListNode findKth(ListNode head, int k){
 //        k需要大于0
         if (k<=0){
             return null;

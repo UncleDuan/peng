@@ -7,10 +7,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="junit" level="project" />
-    <orderEntry type="library" name="org.hamcrest.core_1.3.0.v20180420-1519" level="project" />
-    <orderEntry type="library" name="jcip-examples-src" level="project" />
-    <orderEntry type="library" name="jcip-annotations-src" level="project" />
-    <orderEntry type="library" name="servlet-api-2.5" level="project" />
+    <orderEntry type="library" exported="" name="junit" level="project" />
+    <orderEntry type="library" exported="" name="jcip-examples-src" level="project" />
+    <orderEntry type="library" exported="" name="jcip-annotations-src" level="project" />
+    <orderEntry type="library" exported="" name="jcip-annotations" level="project" />
+    <orderEntry type="library" exported="" name="hamcrest-core-1.3.jar" level="project" />
+    <orderEntry type="library" exported="" name="servlet-api-2.5.jar" level="project" />
   </component>
 </module>

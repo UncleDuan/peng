@@ -1,11 +1,13 @@
 package offer;
 
+import datastructure.linkList.ListNode;
+
 /**
  * Created by ionolab-DP on 2019/1/18.
  */
 public class MergeList {
 
-    public static ListNode merge1(ListNode head1,ListNode head2){
+    public static ListNode merge1(ListNode head1, ListNode head2){
         if (head1==null){
             return head2;
         }
