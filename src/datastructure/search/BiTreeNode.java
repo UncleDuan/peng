@@ -95,7 +95,7 @@ public class BiTreeNode {
             return false;
         else {
             //Todo father不是正确的
-            if (key==biTree.leftChild.data||key==)
+            if (key==biTree.leftChild.data||key==biTree.rightChild.data)
                 return deleteNode(biTree,father);
             else if (key<biTree.data){
                 return delete(biTree.leftChild,key);

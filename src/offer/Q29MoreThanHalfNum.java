@@ -29,7 +29,7 @@ public class Q29MoreThanHalfNum {
             quickSort(array,pivot+1,end);
         }
     }
-    public static int partition(int[] array,int start,int end){
+    private static int partition(int[] array,int start,int end){
         int pre=array[start];
         while (start<end) {
             while (start<end&&array[end]>=pre)
