@@ -34,7 +34,7 @@ public class Sort {
     public static void bubbleSort1(int[] array){
         int i,j;
         for (i=0;i<array.length;i++){
-            for (j=array.length-1;j>0;j--){
+            for (j=array.length-1;j>i;j--){
                 if (array[j-1]>array[j])
                 swap(array,j,j-1);
             }
@@ -45,13 +45,13 @@ public class Sort {
     //当没有任何数据交换时，表明数据已经有序，无须后续的判断
     public static void bubbleSort2(int[] array){
         int i,j;
-        boolean disordered=true;
-        for (i=0;i<array.length&&disordered;i++){
-            disordered=false;
-            for (j=array.length-1;j>0;j--){
+        boolean hasSwaped=true;
+        for (i=0;i<array.length&&hasSwaped;i++){
+            hasSwaped=false;
+            for (j=array.length-1;j>i;j--){
                 if (array[j-1]>array[j]) {
                     swap(array, j, j - 1);
-                    disordered=true;
+                    hasSwaped=true;
                 }
             }
         }
@@ -77,60 +77,53 @@ public class Sort {
     }
 
 
-    //直接插入排序,时间复杂度为O(n平方)
+    //直接插入排序
     //分成了两部分，前一部分有序，后一部分无序，从无序插入到无序表。
     public static void insertSort(int[] array){
-        int i,j,tmp;
+        int i,j,insertElement;
         //前i个元素为有序的
         for (i=1;i<array.length;i++){
             if (array[i]<array[i-1]){
-                tmp=array[i];
-                for (j=i-1;j>=0&&array[j]>tmp;j--){
+                insertElement=array[i];
+
+                //从有序数组的最后一个元素开始，把大于insertElement的元素往后挪一个位置，将insertElement插入
+                for (j=i-1;j>=0&&array[j]>insertElement;j--){
                     array[j+1]=array[j];
                 }
-                array[j+1]=tmp;
+                array[j+1]=insertElement;
             }
         }
 
     }
 
     //
-    /**
-     * 归并排序：
-     * 时间复杂度为O(nlogn)
-     */
-    public static void merSort(int[] arr,int left,int right){
+    //
 
-        if(left<right){
-            int mid = (left+right)/2;
-            merSort(arr,left,mid);//左边归并排序，使得左子序列有序
-            merSort(arr,mid+1,right);//右边归并排序，使得右子序列有序
-            merge(arr,left,mid,right);//合并两个子序列
-        }
-    }
-    private static void merge(int[] arr, int left, int mid, int right) {
-        int[] temp = new int[right - left + 1];//ps：也可以从开始就申请一个与原数组大小相同的数组，因为重复new数组会频繁申请内存
-        int i = left;
-        int j = mid+1;
-        int k = 0;
-        while(i<=mid&&j<=right){
-            if (arr[i] < arr[j]) {
-                temp[k++] = arr[i++];
-            } else {
-                temp[k++] = arr[j++];
+    /**
+     * 希尔排序：
+     * 1.将整个序列分割成若干个子序列，然后在这些子序列内分别进行直接插入排序；
+     * 2.当整个序列基本有序时，对全体记录进行一次直接插入排序。
+     * @param array 待排序的数组
+     */
+    public static void  shellSort(int[] array){
+        int increment=array.length;
+        int insertElement;
+        while (increment>1){
+            increment=increment/3+1;
+            for (int i=increment;i<array.length;i++){
+                if (array[i]<array[i-increment]){
+                    insertElement=array[i];
+                    int j;
+                    for (j=i-increment;j>=0&&insertElement<array[j];j-=increment){
+                        array[j+increment]=array[j];
+                    }
+                    array[j+increment]=insertElement;
+                }
             }
         }
-        while(i<=mid){//将左边剩余元素填充进temp中
-            temp[k++] = arr[i++];
-        }
-        while(j<=right){//将右序列剩余元素填充进temp中
-            temp[k++] = arr[j++];
-        }
-        //将temp中的元素全部拷贝到原数组中
-        for (int k2 = 0; k2 < temp.length; k2++) {
-            arr[k2 + left] = temp[k2];
-        }
+
     }
+
 
     /**
      * 快速排序，时间复杂度O(nlogn),空间复杂度O(logn)
@@ -201,30 +194,60 @@ public class Sort {
         return low;
     }
 
+    /**
+     * 堆排序：
+     * 1.构建一个大顶堆；
+     * 2.逐步将每个最大值的根结点与末尾元素交换，并再调整其成为大顶堆。
+     * @param array
+     */
     public static void heapSort(int[] array){
         int i;
-        for (i=array.length/2;i>0;i--){
+        for (i=array.length/2-1;i>=0;i--){
             heapAdjust(array,i,array.length);
         }
+        for (i=array.length-1;i>0;i--){
+            swap(array,0,i);
+            heapAdjust(array,0,i-1);
+        }
     }
-    private static void heapAdjust(int[] array, int s,int m){}
+    private static void heapAdjust(int[] array, int nodeToAdjust,int maxIndex){
+        int temp=array[nodeToAdjust];
+//        对于初始化一个大顶堆，
+//        注意到在heapSort中从length/2-1这个结点开始往根结点实现大顶堆，
+//        length/2-1是一个叶子结点的父节点，对于这样的结点，次函数很明显会满足实现；
+//        在逐步往根结点推进，直到整个数组满足一个大顶堆。
+//        对于交换结点后重新调整为大顶堆：
+//        注意，不同于重新构建一个大顶堆，因为除了nodeToAdjust，其他结点都是满足大顶堆要求的。
+//        看孩子结点有没有比它大的，如果没有，退出循环；如果有，把孩子结点的值赋给该结点，并且孩子结点称为新的需要调整的结点。
+        for (int i=2*nodeToAdjust+1;i<maxIndex;i=2*i+1){
+            if (i<maxIndex&&array[i]<array[i+1]){
+                i++;
+            }
+            if (temp>=array[i]){
+                break;
+            }
+            array[nodeToAdjust]=array[i];
+            nodeToAdjust=i;
+        }
+        array[nodeToAdjust]=temp;
+
+    }
+
+
+
 
     public static void main(String[] args) {
-//        int[] array={9,8,1,3,5,6,4,2,7};
-////        bubbleSort0(array);
-////        bubbleSort1(array);
+//        int[] array={2,1,3,4,5,6,7,8,9};
+//        bubbleSort0(array);
+//        shellSort(array);
+//        heapSort(array);
 //        System.out.println(Arrays.toString(array));
-////        bubbleSort2(array);
-////        selectSort(array);
-////        insertSort(array);
+//        bubbleSort2(array);
+//        selectSort(array);
+//        insertSort(array);
 //        quickSort(array);
 //        System.out.println(Arrays.toString(array));
-        int[] test = {9,2,6,3,5,7,10,11,12};
-        merSort(test,0,test.length-1);
-        for(int i=0; i<test.length;i++){
-            System.out.print(test[i] + " ");
-        }
-
+        System.out.println(System.getProperty("java.class.path"));
     }
 }
 
