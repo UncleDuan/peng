@@ -6,6 +6,9 @@ import org.junit.Test;
  * Created by ionolab-DP on 2018/12/29.
  */
 public class AboutIO {
+    public AboutIO(){
+        System.out.println("AboutIO initialization by："+this.getClass().getClassLoader());
+    }
     public static void main(String[] args) {
 
     }
