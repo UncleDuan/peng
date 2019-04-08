@@ -30,10 +30,11 @@ public class Q25FindPath {
             }
         }
         stack.pop();
+//        sumPath-=current.data;
     }
 
     public static void main(String[] args) {
-        int[] array={10,5,12,4,7};
+        int[] array={10,5,12,4,7,0};
         BiTreeNode root=BiTreeNode.create(array);
         findPath(root,22);
     }
