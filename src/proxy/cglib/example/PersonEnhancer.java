@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 public class PersonEnhancer implements MethodInterceptor{
 
 
-    @Override
+
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
 
         System.out.println("Cglib代理了");
