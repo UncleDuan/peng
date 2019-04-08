@@ -1,4 +1,4 @@
-package threadpool;
+package threadpool.executor;
 
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;

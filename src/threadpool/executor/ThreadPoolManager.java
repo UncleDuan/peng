@@ -1,4 +1,4 @@
-package threadpool;
+package threadpool.executor;
 
 /**
  * Created by pengsel on 2019/3/13.
