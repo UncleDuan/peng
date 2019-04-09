@@ -1,7 +1,5 @@
 package offer;
 
-import company.huawei.question2.Main;
-
 /**
  * Created by ionolab-DP on 2019/1/12.
  */
