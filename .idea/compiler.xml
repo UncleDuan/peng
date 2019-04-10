@@ -19,8 +19,8 @@
         <module name="peng" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="peng" target="8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="peng" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
