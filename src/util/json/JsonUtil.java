@@ -6,12 +6,15 @@ package util.json;
 
 import java.text.SimpleDateFormat;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
+
+
 import java.util.*;
 
 /**
@@ -21,6 +24,8 @@ import java.util.*;
 public class JsonUtil {
 
 
+
+    private static Logger logger =Logger.getLogger(JsonUtil.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
     static{
         //对象的所有字段全部列入
@@ -77,7 +82,7 @@ public class JsonUtil {
         try {
             return clazz.equals(String.class)? (T)str : objectMapper.readValue(str,clazz);
         } catch (Exception e) {
-//            log.warn("Parse String to Object error",e);
+            logger.warn("Parse String to Object error",e);
             return null;
         }
     }
@@ -91,7 +96,7 @@ public class JsonUtil {
         try {
             return (T)(typeReference.getType().equals(String.class)? str : objectMapper.readValue(str,typeReference));
         } catch (Exception e) {
-//            log.warn("Parse String to Object error",e);
+            logger.warn("Parse String to Object error",e);
             return null;
         }
     }
@@ -102,7 +107,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(str,javaType);
         } catch (Exception e) {
-//            log.warn("Parse String to Object error",e);
+            logger.warn("Parse String to Object error",e);
             return null;
         }
     }

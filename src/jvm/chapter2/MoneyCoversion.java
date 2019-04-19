@@ -5,8 +5,8 @@ package jvm.chapter2;
  */
 public class MoneyCoversion {
 
-    private static final char[] amounts = {'零','壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖',};
-    private static final char[] units={'元','拾','佰','仟','万','拾','佰','仟','亿','拾','佰','仟','万'};
+    private static final String[] amounts = {"零","壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖",};
+    private static final String[] units={"元","拾","佰","仟","万","拾","佰","仟","亿","拾","佰","仟","万"};
 
     public static String coversion(int money){
         StringBuffer stringBuffer=new StringBuffer();
